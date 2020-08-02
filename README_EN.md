@@ -28,22 +28,22 @@ The scheme as a set of multi-function background frame templates, suitable for m
 
 ## Function
 
--   [x] Element-UI
--   [x] Login/Logout
--   [x] Dashboard
--   [x] Table
--   [x] Tabs
--   [x] From
--   [x] Chart :bar_chart:
--   [x] Editor
--   [x] Markdown
--   [x] Upload pictures by clipping or dragging
--   [x] Support manual switch themes :sparkles:
--   [x] List drag sort
--   [x] Permission
--   [x] 404 / 403
--   [x] Three level menu
--   [x] Custom icon
+- [x] Element-UI
+- [x] Login/Logout
+- [x] Dashboard
+- [x] Table
+- [x] Tabs
+- [x] From
+- [x] Chart :bar_chart:
+- [x] Editor
+- [x] Markdown
+- [x] Upload pictures by clipping or dragging
+- [x] Support manual switch themes :sparkles:
+- [x] List drag sort
+- [x] Permission
+- [x] 404 / 403
+- [x] Three level menu
+- [x] Custom icon
 
 ## Installation steps
 
@@ -69,49 +69,49 @@ Vue.js wrapper for sChart.js. Github : [vue-schart](https://github.com/linxin/vu
 
 ```html
 <template>
-    <div>
-        <schart class="wrapper" canvasId="myCanvas" :options="options"></schart>
-    </div>
+  <div>
+    <schart class="wrapper" canvasId="myCanvas" :options="options"></schart>
+  </div>
 </template>
 
 <script>
-    import Schart from 'vue-schart'; // 导入Schart组件
-    export default {
-        data() {
-            return {
-                options: {
-                    type: 'bar',
-                    title: {
-                        text: '最近一周各品类销售图'
-                    },
-                    labels: ['周一', '周二', '周三', '周四', '周五'],
-                    datasets: [
-                        {
-                            label: '家电',
-                            data: [234, 278, 270, 190, 230]
-                        },
-                        {
-                            label: '百货',
-                            data: [164, 178, 190, 135, 160]
-                        },
-                        {
-                            label: '食品',
-                            data: [144, 198, 150, 235, 120]
-                        }
-                    ]
-                }
-            };
+  import Schart from 'vue-schart' // 导入Schart组件
+  export default {
+    data() {
+      return {
+        options: {
+          type: 'bar',
+          title: {
+            text: '最近一周各品类销售图',
+          },
+          labels: ['周一', '周二', '周三', '周四', '周五'],
+          datasets: [
+            {
+              label: '家电',
+              data: [234, 278, 270, 190, 230],
+            },
+            {
+              label: '百货',
+              data: [164, 178, 190, 135, 160],
+            },
+            {
+              label: '食品',
+              data: [144, 198, 150, 235, 120],
+            },
+          ],
         },
-        components: {
-            Schart
-        }
-    };
+      }
+    },
+    components: {
+      Schart,
+    },
+  }
 </script>
 <style>
-    .wrapper {
-        width: 7rem;
-        height: 5rem;
-    }
+  .wrapper {
+    width: 7rem;
+    height: 5rem;
+  }
 </style>
 ```
 
@@ -167,7 +167,7 @@ Complete!
 The first step to enter 'src/main.js' and change into green theme.
 
 ```javascript
-import 'element-ui/lib/theme-default/index.css'; // default theme
+import 'element-ui/lib/theme-default/index.css' // default theme
 // import '../static/css/theme-green/index.css';       // green theme
 ```
 

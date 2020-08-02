@@ -52,24 +52,24 @@
 
 ## 功能
 
--   [x] Element UI
--   [x] 登录/注销
--   [x] Dashboard
--   [x] 表格
--   [x] Tab 选项卡
--   [x] 表单
--   [x] 图表 :bar_chart:
--   [x] 富文本编辑器
--   [x] markdown 编辑器
--   [x] 图片拖拽/裁剪上传
--   [x] 支持切换主题色 :sparkles:
--   [x] 列表拖拽排序
--   [x] 权限测试
--   [x] 404 / 403
--   [x] 三级菜单
--   [x] 自定义图标
--   [x] 可拖拽弹窗
--   [x] 国际化
+- [x] Element UI
+- [x] 登录/注销
+- [x] Dashboard
+- [x] 表格
+- [x] Tab 选项卡
+- [x] 表单
+- [x] 图表 :bar_chart:
+- [x] 富文本编辑器
+- [x] markdown 编辑器
+- [x] 图片拖拽/裁剪上传
+- [x] 支持切换主题色 :sparkles:
+- [x] 列表拖拽排序
+- [x] 权限测试
+- [x] 404 / 403
+- [x] 三级菜单
+- [x] 自定义图标
+- [x] 可拖拽弹窗
+- [x] 国际化
 
 ## 安装步骤
 
@@ -95,49 +95,49 @@ vue.js 封装 sChart.js 的图表组件。访问地址：[vue-schart](https://gi
 
 ```html
 <template>
-    <div>
-        <schart class="wrapper" canvasId="myCanvas" :options="options"></schart>
-    </div>
+  <div>
+    <schart class="wrapper" canvasId="myCanvas" :options="options"></schart>
+  </div>
 </template>
 
 <script>
-    import Schart from 'vue-schart'; // 导入Schart组件
-    export default {
-        data() {
-            return {
-                options: {
-                    type: 'bar',
-                    title: {
-                        text: '最近一周各品类销售图'
-                    },
-                    labels: ['周一', '周二', '周三', '周四', '周五'],
-                    datasets: [
-                        {
-                            label: '家电',
-                            data: [234, 278, 270, 190, 230]
-                        },
-                        {
-                            label: '百货',
-                            data: [164, 178, 190, 135, 160]
-                        },
-                        {
-                            label: '食品',
-                            data: [144, 198, 150, 235, 120]
-                        }
-                    ]
-                }
-            };
+  import Schart from 'vue-schart' // 导入Schart组件
+  export default {
+    data() {
+      return {
+        options: {
+          type: 'bar',
+          title: {
+            text: '最近一周各品类销售图',
+          },
+          labels: ['周一', '周二', '周三', '周四', '周五'],
+          datasets: [
+            {
+              label: '家电',
+              data: [234, 278, 270, 190, 230],
+            },
+            {
+              label: '百货',
+              data: [164, 178, 190, 135, 160],
+            },
+            {
+              label: '食品',
+              data: [144, 198, 150, 235, 120],
+            },
+          ],
         },
-        components: {
-            Schart
-        }
-    };
+      }
+    },
+    components: {
+      Schart,
+    },
+  }
 </script>
 <style>
-    .wrapper {
-        width: 7rem;
-        height: 5rem;
-    }
+  .wrapper {
+    width: 7rem;
+    height: 5rem;
+  }
 </style>
 ```
 
@@ -178,7 +178,7 @@ npm un vue-quill-editor -S
 第一步：打开 src/main.js 文件，找到引入 element 样式的地方，换成浅绿色主题。
 
 ```javascript
-import 'element-ui/lib/theme-default/index.css'; // 默认主题
+import 'element-ui/lib/theme-default/index.css' // 默认主题
 // import './assets/css/theme-green/index.css';       // 浅绿色主题
 ```
 
