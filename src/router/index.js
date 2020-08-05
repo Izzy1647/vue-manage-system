@@ -40,6 +40,34 @@ export default new Router({
           meta: { title: '基础表格' },
         },
         {
+          path: '/fpigs',
+          component: () => import('../components/page/fpigTable.vue'),
+          meta: { title: '母猪信息' },
+        },
+        {
+          path: '/mpigs',
+          component: () => import('../components/page/mpigTable.vue'),
+          meta: { title: '公猪信息' },
+        },
+        {
+          path: '/baoyuHouses',
+          component: () => import('../components/page/baoyuHouseTable.vue'),
+          meta: { title: '保育舍信息' },
+        },
+        {
+          path: '/store',
+          component: () => import('../components/page/storeTable.vue'),
+          meta: { title: '仓库信息' },
+        },
+        {
+          path: '/finance',
+          component: () =>
+            import(
+              /* webpackChunkName: "tabs" */ '../components/page/finance.vue'
+            ),
+          meta: { title: '财务报表' },
+        },
+        {
           path: '/tabs',
           component: () =>
             import(

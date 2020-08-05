@@ -12,7 +12,7 @@
           </div>
           <div class="user-info-list">
             上次登录时间：
-            <span>2019-11-01</span>
+            <span>{{ date }}</span>
           </div>
           <div class="user-info-list">
             上次登录地点：
@@ -133,6 +133,7 @@ export default {
   data() {
     return {
       name: localStorage.getItem('ms_username'),
+      date: '1000',
       todoList: [
         {
           title: '今天要修复100个bug',

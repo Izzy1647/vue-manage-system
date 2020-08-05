@@ -1,7 +1,7 @@
 <template>
   <div class="login-wrap">
     <div class="ms-login">
-      <div class="ms-title">后台管理系统</div>
+      <div class="ms-title">安徽三源种猪改良</div>
       <el-form
         :model="param"
         :rules="rules"
@@ -72,7 +72,7 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: url(../../assets/img/login-bg.jpg);
+  background-image: url(../../assets/img/pig.jpg);
   background-size: 100%;
 }
 .ms-title {
@@ -80,7 +80,7 @@ export default {
   line-height: 50px;
   text-align: center;
   font-size: 20px;
-  color: #fff;
+  color: #000;
   border-bottom: 1px solid #ddd;
 }
 .ms-login {

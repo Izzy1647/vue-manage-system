@@ -63,10 +63,42 @@ export default {
           index: 'dashboard',
           title: '系统首页',
         },
+        // {
+        //   icon: 'el-icon-lx-cascades',
+        //   index: 'table',
+        //   title: '表格示例',
+        // },
         {
           icon: 'el-icon-lx-cascades',
-          index: 'table',
-          title: '基础表格',
+          index: 'info',
+          title: '统计信息',
+          subs: [
+            {
+              index: 'fpigs',
+              title: '母猪信息',
+            },
+            {
+              index: 'mpigs',
+              title: '公猪信息',
+            },
+            {
+              index: 'baoyuhouses',
+              title: '保育舍信息',
+            },
+            {
+              index: 'yufeihouses',
+              title: '育肥舍信息',
+            },
+            {
+              index: 'store',
+              title: '仓库信息',
+            },
+          ],
+        },
+        {
+          icon: 'el-icon-lx-copy',
+          index: 'finance',
+          title: '财务报表',
         },
         {
           icon: 'el-icon-lx-copy',
@@ -147,11 +179,11 @@ export default {
             },
           ],
         },
-        {
-          icon: 'el-icon-lx-redpacket_fill',
-          index: '/donate',
-          title: '支持作者',
-        },
+        // {
+        //   icon: 'el-icon-lx-redpacket_fill',
+        //   index: '/donate',
+        //   title: '支持作者',
+        // },
       ],
     }
   },
