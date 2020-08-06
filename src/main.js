@@ -9,8 +9,11 @@ import './assets/css/theme-green/index.css' // 浅绿色主题
 import './assets/css/icon.css'
 import './components/common/directives'
 import 'babel-polyfill'
-
+import echarts from 'echarts'
+import china from 'echarts/map/json/china.json'
+echarts.registerMap('china', china)
 Vue.config.productionTip = false
+Vue.prototype.$echarts = echarts
 Vue.use(VueI18n)
 Vue.use(ElementUI, {
   size: 'small',
