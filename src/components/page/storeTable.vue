@@ -4,9 +4,9 @@
       <div>
         <el-row :gutter="20">
           <el-col :span="22">
-            <el-row :gutter="20" class="mgb20">
+            <el-row :gutter="29" class="mgb20">
               <el-col :span="4">
-                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 120px">
+                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 160px">
                   <div class="grid-content grid-con-1">
                     <!-- <i class="el-icon-lx-people grid-con-icon"></i> -->
                     <div class="grid-cont-right">
@@ -17,7 +17,7 @@
                 </el-card>
               </el-col>
               <el-col :span="4">
-                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 120px">
+                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 160px">
                   <div class="grid-content grid-con-2">
                     <!-- <i class="el-icon-lx-notice grid-con-icon"></i> -->
                     <div class="grid-cont-right">
@@ -28,7 +28,7 @@
                 </el-card>
               </el-col>
               <el-col :span="4">
-                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 120px">
+                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 160px">
                   <div class="grid-content grid-con-2">
                     <!-- <i class="el-icon-lx-notice grid-con-icon"></i> -->
                     <div class="grid-cont-right">
@@ -39,7 +39,7 @@
                 </el-card>
               </el-col>
               <el-col :span="4">
-                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 120px">
+                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 160px">
                   <div class="grid-content grid-con-3">
                     <!-- <i class="el-icon-lx-goods grid-con-icon"></i> -->
                     <div class="grid-cont-right">
@@ -50,7 +50,7 @@
                 </el-card>
               </el-col>
               <el-col :span="4">
-                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 120px">
+                <el-card shadow="hover" :body-style="{ padding: '0px' }" style="width: 160px">
                   <div class="grid-content grid-con-3">
                     <!-- <i class="el-icon-lx-goods grid-con-icon"></i> -->
                     <div class="grid-cont-right">
@@ -65,91 +65,229 @@
           </el-col>
         </el-row>
       </div>
-      <el-table
-        :data="tableData"
-        border
-        class="table"
-        ref="multipleTable"
-        header-cell-class-name="table-header"
-        @selection-change="handleSelectionChange"
-      >
-        <el-table-column
-          type="selection"
-          width="55"
-          align="center"
-        ></el-table-column>
-        <el-table-column
-          prop="name"
-          label="类别"
-          width="225"
-          align="center"
-        ></el-table-column>
-        <!-- <el-table-column prop="name" label="用户名"></el-table-column> -->
-        <el-table-column label="重量" align="center">
-          <template slot-scope="scope">{{ scope.row.num  }}kg</template>
-        </el-table-column>
-        <!-- <el-table-column label="头像(查看大图)" align="center">
-          <template slot-scope="scope">
-            <el-image
-              class="table-td-thumb"
-              :src="scope.row.thumb"
-              :preview-src-list="[scope.row.thumb]"
-            ></el-image>
-          </template>
-        </el-table-column> -->
-        <!-- <el-table-column prop="address" label="地址"></el-table-column> -->
-        <el-table-column label="流向" align="center">
-          <template slot-scope="scope">
-            <el-tag
-              :type="
-                scope.row.direction === 'in'
-                  ? 'success'
-                  : scope.row.direction === 'out'
-                  ? 'danger'
-                  : ''
-              "
-              >{{ scope.row.direction === 'in' ? '买入' : '消耗' }}</el-tag
-            >
-          </template>
-        </el-table-column>
 
-        <el-table-column prop="date" label="时间" align="center">
-          <template slot-scope="scope">{{ scope.row.date }}</template>
-        </el-table-column>
-      </el-table>
-      <div class="pagination">
-        <el-pagination
-          background
-          layout="total, prev, pager, next"
-          :current-page="query.pageIndex"
-          :page-size="query.pageSize"
-
-          @current-change="handlePageChange"
-        ></el-pagination>
+      <div class="handle-box">
+        <el-button type="primary" icon="el-icon-lx-add" @click="handleAdd"
+          >添加原料进货信息</el-button
+        >
       </div>
-      <!-- :total="pageTotal" -->
+
+
+      <el-tabs v-model="message">
+        <el-tab-pane :label="'原料日志'" name="first">
+          <el-table
+            :data="tableData"
+            border
+            class="table"
+            ref="multipleTable"
+            header-cell-class-name="table-header"
+            @selection-change="handleSelectionChange"
+          >
+            <el-table-column
+              type="selection"
+              width="55"
+              align="center"
+            ></el-table-column>
+            <el-table-column
+              prop="name"
+              label="类别"
+              width="225"
+              align="center"
+            ></el-table-column>
+            <!-- <el-table-column prop="name" label="用户名"></el-table-column> -->
+            <el-table-column label="重量" align="center">
+              <template slot-scope="scope">{{ scope.row.num  }}kg</template>
+            </el-table-column>
+            <el-table-column label="流向" align="center">
+              <template slot-scope="scope">
+                <el-tag
+                  :type="
+                    scope.row.direction === 'in'
+                      ? 'success'
+                      : scope.row.direction === 'out'
+                      ? 'danger'
+                      : ''
+                  "
+                  >{{ scope.row.direction === 'in' ? '买入' : '消耗' }}</el-tag
+                >
+              </template>
+            </el-table-column>
+
+            <el-table-column prop="date" label="时间" align="center">
+              <template slot-scope="scope">{{ scope.row.date }}</template>
+            </el-table-column>
+          </el-table>
+          <div class="pagination">
+            <el-pagination
+              background
+              layout="total, prev, pager, next"
+              :current-page="query.pageIndex"
+              :page-size="query.pageSize"
+
+              @current-change="handlePageChange"
+            ></el-pagination>
+          </div>
+        </el-tab-pane>
+
+        <el-tab-pane :label="'饲料信息'" name="second">
+          <el-table
+            :data="siliaoData"
+            border
+            class="table"
+            ref="multipleTable"
+            header-cell-class-name="table-header"
+            @selection-change="handleSelectionChange"
+          >
+            <el-table-column
+              type="selection"
+              width="55"
+              align="center"
+            ></el-table-column>
+            <el-table-column
+              prop="name"
+              label="饲料名称"
+              width="225"
+              align="center"
+            ></el-table-column>
+            <!-- <el-table-column prop="name" label="用户名"></el-table-column> -->
+            <el-table-column label="数量" align="center">
+              <template slot-scope="scope">{{ scope.row.num  }}kg</template>
+            </el-table-column>
+
+            <el-table-column label="操作" align="center">
+              <template slot-scope="scope">
+                <el-button
+                  type="text"
+                  icon="el-icon-edit"
+                  @click="handleMake(scope.$index, scope.row)"
+                  >制作</el-button
+                >
+                <el-button
+                  type="text"
+                  icon="el-icon-delete"
+                  class="red"
+                  @click="handleUse(scope.$index, scope.row)"
+                  >使用</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+          <div class="pagination">
+            <el-pagination
+              background
+              layout="total, prev, pager, next"
+              :current-page="query.pageIndex"
+              :page-size="query.pageSize"
+              @current-change="handlePageChange"
+            ></el-pagination>
+          </div>
+        </el-tab-pane>
+
+        <el-tab-pane :label="'饲料日志'" name="third">
+          <el-table
+            :data="siliaoLogData"
+            border
+            class="table"
+            ref="multipleTable"
+            header-cell-class-name="table-header"
+            @selection-change="handleSelectionChange"
+          >
+            <el-table-column
+              type="selection"
+              width="55"
+              align="center"
+            ></el-table-column>
+            <el-table-column
+              prop="id"
+              label="日志流水号"
+              align="center"
+            ></el-table-column>
+            <!-- <el-table-column prop="name" label="用户名"></el-table-column> -->
+            <el-table-column label="饲料种类" align="center">
+              <template slot-scope="scope">{{ scope.row.name  }}</template>
+            </el-table-column>
+            <el-table-column label="操作" align="center">
+              <template slot-scope="scope">
+                <el-tag
+                  :type="
+                    scope.row.num > 0 ? 'success' : 'danger'
+                  "
+                  >{{ scope.row.num > 0 ? '制作新增' : '消耗' }}</el-tag
+                >
+              </template>
+            </el-table-column>
+            <el-table-column label="数量" align="center">
+              <template slot-scope="scope">{{ scope.row.num  }}kg</template>
+            </el-table-column>
+          </el-table>
+          <div class="pagination">
+            <el-pagination
+              background
+              layout="total, prev, pager, next"
+              :current-page="query.pageIndex"
+              :page-size="query.pageSize"
+              @current-change="handlePageChange"
+            ></el-pagination>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+
+
+
+
+
     </div>
 
-    <!-- 弹出框2  添加母猪信息 -->
-    <el-dialog title="添加母猪信息" :visible.sync="addVisible" width="30%">
+    <!-- 弹出框1  添加进货信息 -->
+    <el-dialog title="添加进货信息" :visible.sync="addVisible" width="30%">
       <el-form ref="form" :model="form" label-width="70px">
-        <el-form-item label="耳牌号">
-          <input name="id" v-model="form.id">
-          <!-- <el-input placeholder="输入耳牌号" @input="onInputChange"></el-input> -->
-        </el-form-item>
-        <el-form-item label="重量">
-          <input name="weight" v-model="form.weight">
-          <!-- <el-input placeholder="单位:kg" @input="onInputChange"></el-input> -->
-        </el-form-item>
-        <el-form-item label="状态">
-          <el-select v-model="form.status" placeholder="请选择">
-            <el-option key="dpz" label="待配种" value="待配种"></el-option>
-            <el-option key="ypz" label="已配种" value="已配种"></el-option>
+        <el-form-item label="种类">
+          <el-select v-model="form.name" placeholder="请选择">
+            <el-option key="ym" label="玉米" value="corn"></el-option>
+            <el-option key="dp" label="豆粕" value="bean"></el-option>
+            <el-option key="fp" label="麸皮" value="bran"></el-option>
+            <el-option key="yhl" label="预混料" value="premix"></el-option>
+            <el-option key="tmj" label="脱霉剂" value="offmildew"></el-option>
           </el-select>
         </el-form-item>
+        <el-form-item label="数量">
+          <el-input placeholder="单位:kg" @input="onInputChange" v-model.number="form.num"></el-input>
+        </el-form-item>
+
+        <el-form-item label="单价">
+          <el-input placeholder="输入单价" @input="onInputChange" v-model.number="form.perMoney"></el-input>
+        </el-form-item>
+        
         <el-form-item>
           <el-button type="primary" @click="onAddSubmit">提交</el-button>
           <el-button @click="addVisible = false">取消</el-button>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
+
+
+    <!-- 弹出框2  制作饲料信息 -->
+    <el-dialog title="制作饲料" :visible.sync="makeVisible" width="30%">
+      <el-form ref="form" :model="form" label-width="70px">
+        <el-form-item label="数量">
+          <el-input placeholder="单位:kg" @input="onInputChange" v-model.number="makeForm.num"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onMakeSubmit">制作</el-button>
+          <el-button @click="makeVisible = false">取消</el-button>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
+
+    <!-- 弹出框3  feed饲料信息 -->
+    <el-dialog title="使用饲料" :visible.sync="useVisible" width="30%">
+      <el-form ref="form" :model="useForm" label-width="70px">
+        <el-form-item label="数量">
+          <el-input placeholder="单位:kg" @input="onInputChange" v-model.number="useForm.num"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onUseSubmit">使用</el-button>
+          <el-button @click="useVisible = false">取消</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -171,15 +309,22 @@ export default {
         pageSize: 10,
       },
       tableData: [],
+      siliaoData: [],
+      siliaoLogData:[],  // 饲料日志
       multipleSelection: [],
       delList: [],
       editVisible: false,
+      makeVisible: false,
       addVisible: false,
+      useVisible: false,
       pageTotal: 0,
       form: {},
+      makeForm:{},
+      useForm:{},
       idx: -1,
       id: -1,
-      ingredients: {}
+      ingredients: {},
+      message: 'first'
     }
   },
   created() {
@@ -196,7 +341,7 @@ export default {
   methods: {
     getTest() {
       // 进出日志
-      httpGET('/stocks')
+      httpGET('/stocks?pageSize=30')
         .then((res) => {
           let infos = res.data.list
           console.log("stocks log GET", infos)
@@ -222,11 +367,37 @@ export default {
       httpGET('/stocks/count')
         .then((res) => {
           console.log("stocks/count res:", res)
+          for(let i in res.data){
+            res.data[i] = res.data[i].toFixed(2)
+          }
           this.ingredients = res.data
+          console.log("ing:",this.ingredients)
         })
         .catch((err) => {
           console.log("stocks count err:", err)
         })
+      
+      // 饲料数量信息
+      httpGET('/fodderstores/count')
+        .then((res) => {
+          console.log("fodderstores/count res:", res)
+          this.siliaoData = res.data
+        })
+        .catch((err) => {
+          console.log("stocks count err:", err)
+        })
+
+      // 饲料日志信息
+      httpGET('/fodderstores')
+        .then((res) => {
+          // console.log("fodderstores res:", res)
+          this.siliaoLogData = res.data.list
+        })
+        .catch((err) => {
+          console.log("stocks  err:", err)
+        })
+
+      
     },
 
     // 时间戳转日期字符串
@@ -241,39 +412,6 @@ export default {
       return Y+M+D+h+m+s;
     },
 
-    // 获取 easy-mock 的模拟数据
-    getData() {
-      fetchData(this.query).then(res => {
-        console.log("getDATA res:",res)
-        // this.tableData = res.list
-        this.pageTotal = res.pageTotal || 50
-      })
-    },
-
-    // 触发搜索按钮
-    handleSearch() {
-      this.$set(this.query, 'pageIndex', 1)
-      this.getData()
-    },
-
-    // 删除操作
-    handleDelete(index, row) {
-      // 二次确认删除
-      this.$confirm('确定要删除吗？', '提示', {
-        type: 'warning',
-      })
-        .then(() => {
-          this.$message.success('删除成功')
-          this.tableData.splice(index, 1)
-        })
-        .catch(() => {})
-    },
-
-    // 多选操作
-    handleSelectionChange(val) {
-      this.multipleSelection = val
-    },
-
     delAllSelection() {
       const length = this.multipleSelection.length
       let str = ''
@@ -285,27 +423,63 @@ export default {
       this.multipleSelection = []
     },
 
-    // 编辑操作
-    handleEdit(index, row) {
-      this.idx = index
-      this.form = row
-      this.editVisible = true
+    // 制作操作
+    handleMake(index, row) {
+      console.log("make row:",row)
+      this.makeForm.name = row.name
+      this.makeVisible = true
     },
 
-    // 发送添加母猪信息的请求
+    // 使用饲料操作
+    handleUse(index, row) {
+      console.log("use row:",row)
+      this.useForm.name = row.name
+      this.useVisible = true
+
+    },
+
+    // 发送添加原料信息的请求
     onAddSubmit() {
       let params = this.form
-      params.factoryTime = Date.parse(new Date())
-      httpPOST('/sows',params)
+      params.date = Date.parse(new Date())
+      httpPOST('/stocks',params)
         .then((res) => {
-          console.log("successfully add new sow info")
+          console.log("successfully add new stock info")
           location.reload()  // 刷新页面 但是因为后端api响应太慢了 体验不好
         })
         .catch((err) => {
-          console.log("add sow err:",err)
+          console.log("add stock err:",err)
           alert("Error, try again.")
         })
       
+    },
+
+    onMakeSubmit() {
+      let params = this.makeForm
+      console.log("make params:",params)
+      httpPOST('/fodderstores',params)
+        .then((res) => {
+          console.log("fodderstore post success", res)
+          location.reload()
+        })
+        .catch((err) => {
+          console.log("err",err)
+        })
+    },
+
+
+    onUseSubmit() {
+      let params = this.useForm
+      console.log("use params:",params)
+      httpPOST('/fodderstores/feed',params)
+        .then((res) => {
+          console.log("fodderstore feed success", res)
+          location.reload()
+        })
+        .catch((err) => {
+          console.log("feed err",err)
+          location.reload()
+        })
     },
 
 

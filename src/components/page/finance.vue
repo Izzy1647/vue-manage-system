@@ -9,7 +9,6 @@
             class="table"
             ref="multipleTable"
             header-cell-class-name="table-header"
-            @selection-change="handleSelectionChange"
           >
             <el-table-column
               type="selection"
@@ -169,7 +168,7 @@ export default {
                   show: true
               }
             },
-            data:[{name: '新疆', value: 100}]
+            data:[]
           }
         ]
       }

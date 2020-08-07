@@ -12,9 +12,9 @@
         <el-button type="primary" icon="el-icon-search" @click="handleSearch"
           >搜索</el-button
         >
-        <!-- <el-button type="primary" icon="el-icon-lx-add" @click="handleAdd"
-          >添加</el-button
-        > -->
+        <el-button type="primary" icon="el-icon-lx-add" @click="handleAdd"
+          >添加信息</el-button
+        >
       </div>
       <el-table
         :data="tableData"
@@ -92,27 +92,24 @@
       </span>
     </el-dialog>
 
-    <!-- 弹出框2  添加母猪信息 -->
-    <el-dialog title="添加公猪信息" :visible.sync="addVisible" width="30%">
-      <el-form ref="form" :model="form" label-width="70px">
-        <el-form-item label="耳牌号">
-          <!-- <input name="id" v-model="form.id"> -->
-          <el-input placeholder="输入耳牌号" @input="onInputChange" v-model="form.id"></el-input>
-        </el-form-item>
-        <el-form-item label="重量">
-          <!-- <input name="weight" v-model="form.weight"> -->
-          <el-input placeholder="单位:kg" @input="onInputChange" v-model="form.weight"></el-input>
-        </el-form-item>
-        <el-form-item label="采精次数">
-          <!-- <input name="weight" v-model="form.weight"> -->
-          <el-input placeholder="输入采精次数" @input="onInputChange" v-model="form.semenTime"></el-input>
-        </el-form-item>
-        <el-form-item label="种猪代次">
-          <el-select v-model="form.generation" placeholder="请选择">
-            <el-option key="zd" label="祖代" value="祖代"></el-option>
-            <el-option key="fmd" label="父母代" value="父母代"></el-option>
+    <!-- 弹出框2  添加保育舍转入转出信息 -->
+    <el-dialog title="添加转入或转出信息" :visible.sync="addVisible" width="30%">
+      <el-form ref="form" :model="addform" label-width="70px">
+        <el-form-item label="流向">
+          <el-select v-model="addform.operation" placeholder="请选择">
+            <el-option key="zr" label="转入" value="转入"></el-option>
+            <el-option key="zc" label="转出" value="转出"></el-option>
           </el-select>
         </el-form-item>
+
+        <el-form-item label="猪仔数量">
+          <el-input placeholder="输入猪仔数量" @input="onInputChange" v-model.number="addform.operationNum"></el-input>
+        </el-form-item>
+        <el-form-item label="猪栏号">
+          <!-- <input name="weight" v-model="form.weight"> -->
+          <el-input placeholder="输入猪栏号" @input="onInputChange" v-model.number="addform.roomId"></el-input>
+        </el-form-item>
+
         <el-form-item>
           <el-button type="primary" @click="onAddSubmit">提交</el-button>
           <el-button @click="addVisible = false">取消</el-button>
@@ -143,6 +140,7 @@ export default {
       addVisible: false,
       pageTotal: 0,
       form: {},
+      addform: {},
       idx: -1,
       id: -1,
     }
@@ -248,16 +246,16 @@ export default {
 
     // 发送添加公猪信息的请求
     onAddSubmit() {
-      let params = this.form
+      let params = this.addform
       console.log("params:",params)
-      params.indate = Date.parse(new Date())
-      httpPOST('/boars',params)
+      params.date = Date.parse(new Date())
+      httpPOST('/pighouses',params)
         .then((res) => {
-          console.log("successfully add new sow info")
+          console.log("successfully add new baoyushe info")
           location.reload()  // 刷新页面刷新数据 但是因为后端api响应太慢了 体验不好
         })
         .catch((err) => {
-          console.log("add sow err:",err)
+          console.log("add baoyushe info err:",err)
           alert("Error, try again.")
         })
       

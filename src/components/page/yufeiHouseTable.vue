@@ -12,9 +12,15 @@
         <el-button type="primary" icon="el-icon-search" @click="handleSearch"
           >搜索</el-button
         >
-        <!-- <el-button type="primary" icon="el-icon-lx-add" @click="handleAdd"
-          >添加</el-button
-        > -->
+        <el-button type="primary" icon="el-icon-lx-add" @click="handleAdd"
+          >添加卖出信息</el-button
+        >
+        <el-tooltip class="item" effect="dark" content="1号保育舍当前猪数量">
+          <el-button>1号保育舍:{{this.oneNum}}</el-button>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="2号保育舍当前猪数量">
+          <el-button>2号保育舍:{{this.twoNum}}</el-button>
+        </el-tooltip>
       </div>
       <el-table
         :data="tableData"
@@ -92,27 +98,24 @@
       </span>
     </el-dialog>
 
-    <!-- 弹出框2  添加母猪信息 -->
-    <el-dialog title="添加公猪信息" :visible.sync="addVisible" width="30%">
+    <!-- 弹出框2  添加卖出信息 -->
+    <el-dialog title="添加卖出信息" :visible.sync="addVisible" width="30%">
       <el-form ref="form" :model="form" label-width="70px">
-        <el-form-item label="耳牌号">
+        <el-form-item label="卖出头数">
           <!-- <input name="id" v-model="form.id"> -->
-          <el-input placeholder="输入耳牌号" @input="onInputChange" v-model="form.id"></el-input>
+          <el-input placeholder="输入卖出头数" @input="onInputChange" v-model.number="form.operationNum"></el-input>
         </el-form-item>
-        <el-form-item label="重量">
+        <el-form-item label="卖出单价">
+          <el-input placeholder="输入卖出单价" @input="onInputChange" v-model.number="form.perMoney"></el-input>
+        </el-form-item>
+        <el-form-item label="猪栏号">
           <!-- <input name="weight" v-model="form.weight"> -->
-          <el-input placeholder="单位:kg" @input="onInputChange" v-model="form.weight"></el-input>
+          <el-input placeholder="输入猪栏号" @input="onInputChange" v-model.number="form.roomId"></el-input>
         </el-form-item>
-        <el-form-item label="采精次数">
-          <!-- <input name="weight" v-model="form.weight"> -->
-          <el-input placeholder="输入采精次数" @input="onInputChange" v-model="form.semenTime"></el-input>
+        <el-form-item label="卖向地点">
+          <el-input placeholder="以省或直辖市为单位" @input="onInputChange" v-model="form.saleAdd"></el-input>
         </el-form-item>
-        <el-form-item label="种猪代次">
-          <el-select v-model="form.generation" placeholder="请选择">
-            <el-option key="zd" label="祖代" value="祖代"></el-option>
-            <el-option key="fmd" label="父母代" value="父母代"></el-option>
-          </el-select>
-        </el-form-item>
+
         <el-form-item>
           <el-button type="primary" @click="onAddSubmit">提交</el-button>
           <el-button @click="addVisible = false">取消</el-button>
@@ -145,21 +148,24 @@ export default {
       form: {},
       idx: -1,
       id: -1,
+      oneNum: 100,
+      twoNum: 100
     }
   },
   created() {
-    this.getData()
+    
   },
 
   mounted() {
     console.log("mounted")
     this.getTest()
+    this.getNumbers()
   },
 
 
   methods: {
     getTest() {
-      httpGET('/pighouse2s')
+      httpGET('/pighouse2s?pageSize=20')
         .then((res) => {
           let infos = res.data.list
           console.log("pighouse2s GET res.data.list:", infos)
@@ -167,6 +173,26 @@ export default {
         })
         .catch((err) => {
           console.log("pighouse2s GET err:", err)
+        })
+    },
+
+    getNumbers() {
+      httpGET(`/pighouse2s/roomId?roomId=1`)
+        .then((res) => {
+          console.log("get num1",res.data)
+          this.oneNum = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+      httpGET(`/pighouse2s/roomId?roomId=2`)
+        .then((res) => {
+          console.log("get num2",res.data)
+          this.twoNum = res.data
+        })
+        .catch((err) => {
+          console.log(err)
         })
     },
 
@@ -180,15 +206,6 @@ export default {
       let m = (date.getMinutes()+1 < 10 ? '0'+(date.getMinutes()+1) : date.getMinutes()+1) + ':'
       let s = (date.getSeconds()+1 < 10 ? '0'+(date.getSeconds()+1) : date.getSeconds()+1)
       return Y+M+D+h+m+s;
-    },
-
-    // 获取 easy-mock 的模拟数据
-    getData() {
-      fetchData(this.query).then(res => {
-        console.log("getDATA res:",res)
-        // this.tableData = res.list
-        this.pageTotal = res.pageTotal || 50
-      })
     },
 
     // 触发搜索按钮
@@ -250,14 +267,15 @@ export default {
     onAddSubmit() {
       let params = this.form
       console.log("params:",params)
-      params.indate = Date.parse(new Date())
-      httpPOST('/boars',params)
+      params.date = Date.parse(new Date())
+      params.operation = '卖出'
+      httpPOST('/pighouse2s',params)
         .then((res) => {
-          console.log("successfully add new sow info")
+          console.log("successfully post sell info")
           location.reload()  // 刷新页面刷新数据 但是因为后端api响应太慢了 体验不好
         })
         .catch((err) => {
-          console.log("add sow err:",err)
+          console.log("post sell err:",err)
           alert("Error, try again.")
         })
       
