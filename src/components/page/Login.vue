@@ -10,7 +10,7 @@
         class="ms-content"
       >
         <el-form-item prop="username">
-          <el-input v-model="param.username" placeholder="username">
+          <el-input v-model="param.id" placeholder="username">
             <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
           </el-input>
         </el-form-item>
@@ -34,16 +34,17 @@
 </template>
 
 <script>
+import { httpGET } from '../../api/fetch'
 export default {
   data: function () {
     return {
       param: {
-        username: 'admin',
-        password: '123123',
+        // username: 'admin',
+        // password: '123123',
       },
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { required: true, message: '请输入账号', trigger: 'blur' },
         ],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
       },
@@ -51,17 +52,31 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$refs.login.validate(valid => {
-        if (valid) {
-          this.$message.success('登录成功')
-          localStorage.setItem('ms_username', this.param.username)
-          this.$router.push('/')
-        } else {
-          this.$message.error('请输入账号和密码')
-          console.log('error submit!!')
-          return false
-        }
-      })
+      // this.$message.success('登录成功')
+      httpGET(`/staffs/${this.param.id}`)
+        .then((res) => {
+          console.log("res",res)
+          if(this.param.password === res.data.password){
+            localStorage.setItem('ms_username', res.data.name)
+            this.$router.push('/')
+          }else{
+            alert("密码错误")
+          }
+        })
+        .catch((err) => {
+          console.log("login err:", err)
+        })
+      // this.$refs.login.validate(valid => {
+      //   if (valid) {
+      //     this.$message.success('登录成功')
+      //     localStorage.setItem('ms_username', this.param.username)
+      //     this.$router.push('/')
+      //   } else {
+      //     this.$message.error('请输入账号和密码')
+      //     console.log('error submit!!')
+      //     return false
+      //   }
+      // })
     },
   },
 }

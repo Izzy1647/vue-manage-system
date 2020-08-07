@@ -56,9 +56,6 @@
           </el-table>
         </el-tab-pane>
 
-
-
-
         <el-tab-pane :label="`月度账单`" name="second">
           <el-table
             :data="monthlyReportData"
@@ -87,6 +84,11 @@
             </el-table-column>
 
           </el-table>
+          <div>
+            <div id="monthlyChart" style="width:800px; height:600px; padding-top:20px">
+              1
+            </div>
+          </div>
 
           <!-- <template v-if="message === 'second'">
           </template> -->
@@ -126,6 +128,8 @@ export default {
       showHeader: false,
       tableData: [],
       monthlyReportData: [],
+      sellMoney: [],
+      buyMoney: [],
       options: {
         title : {
           text: '国内种猪销量地域分布',
@@ -151,12 +155,6 @@ export default {
           orient : 'vertical',
           left: 'right',
           top: 'center',
-          // feature : {
-          //   mark : {show: true},
-          //   dataView : {show: true, readOnly: false},
-          //   restore : {show: true},
-          //   saveAsImage : {show: true}
-          // }
         },
         series : [
           {
@@ -227,6 +225,13 @@ export default {
           let monthlyInfo = res.data
           this.monthlyReportData = monthlyInfo
           console.log("monthMoney res:", monthlyInfo)
+          this.sellMoney = []
+          this.buyMoney = []
+          for(let i in monthlyInfo){
+            this.sellMoney.push(Number(monthlyInfo[i].sellPigMoney))
+            this.buyMoney.push(Number(monthlyInfo[i].buyStockMoney))
+          }
+          this.drwaMonthlyChart()
         })
         .catch((err) => {
           console.log("monthMOney err:", err)
@@ -248,6 +253,43 @@ export default {
       let myChart = this.$echarts.init(document.getElementById("main"))     
       myChart.setOption(this.options)
     },
+
+    drwaMonthlyChart() {
+      let monthlyChart = this.$echarts.init(document.getElementById("monthlyChart"))
+      monthlyChart.setOption({
+        backgroundColor: "#fff",
+        color: ["#37A2DA", "#67E0E3"],
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['卖出收入', '买入支出']
+        },
+        grid: {
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['2020-7','2020-8']
+        },
+        yAxis: {
+          x: 'center',
+          type: 'value',
+        },
+        series: [{
+          name: '卖出收入',
+          type: 'line',
+          smooth: true,
+          data: this.sellMoney
+        }, {
+          name: '买入支出',
+          type: 'line',
+          smooth: true,
+          data: this.buyMoney
+        }]
+      })
+    }
 
   },
   computed: {

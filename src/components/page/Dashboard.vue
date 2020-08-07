@@ -240,7 +240,7 @@ export default {
   },
   computed: {
     role() {
-      return this.name === 'admin' ? '超级管理员' : '普通用户'
+      return this.name === '吴忧' ? '黑金至尊管理员' : '普通用户'
     },
   },
   // created() {
@@ -264,20 +264,6 @@ export default {
         }/${date.getDate()}`
       })
     },
-    // handleListener() {
-    //     bus.$on('collapse', this.handleBus);
-    //     // 调用renderChart方法对图表进行重新渲染
-    //     window.addEventListener('resize', this.renderChart);
-    // },
-    // handleBus(msg) {
-    //     setTimeout(() => {
-    //         this.renderChart();
-    //     }, 200);
-    // },
-    // renderChart() {
-    //     this.$refs.bar.renderChart();
-    //     this.$refs.line.renderChart();
-    // }
   },
 }
 </script>

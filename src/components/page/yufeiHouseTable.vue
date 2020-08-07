@@ -6,7 +6,7 @@
       <div class="handle-box">
         <el-input
           v-model="query.name"
-          placeholder="保育舍编号"
+          placeholder="育肥舍编号"
           class="handle-input mr10"
         ></el-input>
         <el-button type="primary" icon="el-icon-search" @click="handleSearch"
@@ -36,7 +36,7 @@
           align="center"
         ></el-table-column>
         <!-- <el-table-column prop="name" label="用户名"></el-table-column> -->
-        <el-table-column label="保育舍编号" align="center">
+        <el-table-column label="育肥舍编号" align="center">
           <template slot-scope="scope">{{ scope.row.roomId }}</template>
         </el-table-column>
         <el-table-column label="日期" align="center">
@@ -159,14 +159,14 @@ export default {
 
   methods: {
     getTest() {
-      httpGET('/pighouses')
+      httpGET('/pighouse2s')
         .then((res) => {
           let infos = res.data.list
-          console.log("pighouseGET res.data.list:", infos)
+          console.log("pighouse2s GET res.data.list:", infos)
           this.tableData = infos
         })
         .catch((err) => {
-          console.log("pighouseGET err:", err)
+          console.log("pighouse2s GET err:", err)
         })
     },
 
@@ -197,12 +197,12 @@ export default {
       let searchIndex = Number(this.query.name)
       console.log("query:", searchIndex)
       if(searchIndex){
-        httpGET(`/pighouses/${searchIndex}`)
+        httpGET(`/pighouse2s/${searchIndex}`)
         .then((res) => {
           this.tableData = res.data.list
         })
         .catch((err) => {
-          console.log("get /pigohuses/{id} error:", err)
+          console.log("get /pigohuse2s/{id} error:", err)
           alert("Error, check and try again.")
         })
       }else{

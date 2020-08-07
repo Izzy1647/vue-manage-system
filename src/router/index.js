@@ -55,6 +55,11 @@ export default new Router({
           meta: { title: '保育舍信息' },
         },
         {
+          path: '/yufeiHouses',
+          component: () => import('../components/page/yufeiHouseTable.vue'),
+          meta: { title: '育肥舍信息' },
+        },
+        {
           path: '/store',
           component: () => import('../components/page/storeTable.vue'),
           meta: { title: '仓库信息' },
@@ -67,14 +72,14 @@ export default new Router({
             ),
           meta: { title: '财务报表' },
         },
-        {
-          path: '/tabs',
-          component: () =>
-            import(
-              /* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'
-            ),
-          meta: { title: 'tab选项卡' },
-        },
+        // {
+        //   path: '/tabs',
+        //   component: () =>
+        //     import(
+        //       /* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'
+        //     ),
+        //   meta: { title: 'tab选项卡' },
+        // },
         {
           path: '/form',
           component: () =>
@@ -107,15 +112,15 @@ export default new Router({
             ),
           meta: { title: '文件上传' },
         },
-        {
-          // vue-schart组件
-          path: '/charts',
-          component: () =>
-            import(
-              /* webpackChunkName: "chart" */ '../components/page/BaseCharts.vue'
-            ),
-          meta: { title: 'schart图表' },
-        },
+        // {
+        //   // vue-schart组件
+        //   path: '/charts',
+        //   component: () =>
+        //     import(
+        //       /* webpackChunkName: "chart" */ '../components/page/BaseCharts.vue'
+        //     ),
+        //   meta: { title: 'schart图表' },
+        // },
         {
           // 拖拽列表组件
           path: '/drag',
