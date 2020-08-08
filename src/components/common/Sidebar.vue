@@ -105,15 +105,15 @@ export default {
         //   index: 'tabs',
         //   title: 'tab选项卡',
         // },
-        {
-          icon: 'el-icon-lx-calendar',
-          index: '3',
-          title: '表单相关',
-          subs: [
-            {
-              index: 'form',
-              title: '基本表单',
-            },
+        // {
+        //   icon: 'el-icon-lx-calendar',
+        //   index: '3',
+        //   title: '表单相关',
+        //   subs: [
+        //     {
+        //       index: 'form',
+        //       title: '基本表单',
+        //     },
             // {
             //   index: '3-2',
             //   title: '三级菜单',
@@ -128,12 +128,12 @@ export default {
             //     },
             //   ],
             // },
-            {
-              index: 'upload',
-              title: '文件上传',
-            },
-          ],
-        },
+        //     {
+        //       index: 'upload',
+        //       title: '文件上传',
+        //     },
+        //   ],
+        // },
         {
           icon: 'el-icon-lx-emoji',
           index: 'icon',
@@ -164,21 +164,21 @@ export default {
         //   index: 'i18n',
         //   title: '国际化功能',
         // },
-        {
-          icon: 'el-icon-lx-warn',
-          index: '7',
-          title: '错误处理',
-          subs: [
-            {
-              index: 'permission',
-              title: '权限测试',
-            },
-            {
-              index: '404',
-              title: '404页面',
-            },
-          ],
-        },
+        // {
+        //   icon: 'el-icon-lx-warn',
+        //   index: '7',
+        //   title: '错误处理',
+        //   subs: [
+        //     {
+        //       index: 'permission',
+        //       title: '权限测试',
+        //     },
+        //     {
+        //       index: '404',
+        //       title: '404页面',
+        //     },
+        //   ],
+        // },
       ],
     }
   },

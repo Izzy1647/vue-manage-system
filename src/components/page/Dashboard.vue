@@ -10,13 +10,13 @@
               <div>{{ role }}</div>
             </div>
           </div>
-          <div class="user-info-list">
+          <!-- <div class="user-info-list">
             上次登录时间：
             <span>{{ date }}</span>
-          </div>
+          </div> -->
           <div class="user-info-list">
             上次登录地点：
-            <span>东莞</span>
+            <span>上海</span>
           </div>
         </el-card>
         <el-card shadow="hover" style="height: 252px;">
@@ -32,41 +32,6 @@
         </el-card>
       </el-col>
       <el-col :span="16">
-        <el-row :gutter="20" class="mgb20">
-          <el-col :span="8">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
-              <div class="grid-content grid-con-1">
-                <i class="el-icon-lx-people grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <div class="grid-num">1234</div>
-                  <div>用户访问量</div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="8">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
-              <div class="grid-content grid-con-2">
-                <i class="el-icon-lx-notice grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <div class="grid-num">321</div>
-                  <div>系统消息</div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="8">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
-              <div class="grid-content grid-con-3">
-                <i class="el-icon-lx-goods grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <div class="grid-num">5000</div>
-                  <div>数量</div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
         <el-card shadow="hover" style="height: 403px;">
           <div slot="header" class="clearfix">
             <span>待办事项</span>
@@ -100,28 +65,8 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-row :gutter="20">
-      <el-col :span="12">
-        <el-card shadow="hover">
-          <schart
-            ref="bar"
-            class="schart"
-            canvasId="bar"
-            :options="options"
-          ></schart>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card shadow="hover">
-          <schart
-            ref="line"
-            class="schart"
-            canvasId="line"
-            :options="options2"
-          ></schart>
-        </el-card>
-      </el-col>
-    </el-row>
+      
+    <!-- </el-row> -->
   </div>
 </template>
 
