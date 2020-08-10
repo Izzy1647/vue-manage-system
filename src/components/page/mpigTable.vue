@@ -303,7 +303,7 @@ export default {
 
   methods: {
     getTest() {
-      httpGET('/boars')
+      httpGET('/boars?pageSize=100')
         .then((res) => {
           let infos = res.data.list
           console.log("mpigsGET res.data.list:", infos)

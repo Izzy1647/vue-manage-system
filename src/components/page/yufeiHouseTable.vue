@@ -165,7 +165,7 @@ export default {
 
   methods: {
     getTest() {
-      httpGET('/pighouse2s?pageSize=20')
+      httpGET('/pighouse2s?pageSize=100')
         .then((res) => {
           let infos = res.data.list
           console.log("pighouse2s GET res.data.list:", infos)

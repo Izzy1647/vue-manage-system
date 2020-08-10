@@ -54,7 +54,6 @@
             </el-table-column>
           </el-table>
         </el-tab-pane>
-
         <el-tab-pane :label="`月度账单`" name="second">
           <el-table
             :data="monthlyReportData"
@@ -88,30 +87,12 @@
               1
             </div>
           </div>
-
-          <!-- <template v-if="message === 'second'">
-          </template> -->
         </el-tab-pane>
-
-
         <el-tab-pane :label="`地域分布`" name="third">
           <div id="app">
             <div id="main" style="width: 800px;height:600px;"></div>
           </div>
         </el-tab-pane>
-
-        <!-- <el-tab-pane :label="`图表统计2`" name="fourth">
-          <template v-if="message === 'fourth'">
-            <el-table :data="read" :show-header="false" style="width: 100%;">
-              <el-table-column>
-                <template slot-scope="scope">
-                  <span class="message-title">{{ scope.row.title }}</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="date" width="150"></el-table-column>
-            </el-table>
-          </template>
-        </el-tab-pane> -->
       </el-tabs>
     </div>
   </div>
@@ -181,7 +162,7 @@ export default {
 
   methods: {
     getData() {
-      httpGET('/orders')
+      httpGET('/orders?pageSize=100')
         .then((res) => {
           let infos = res.data.list
           infos.forEach(element => {

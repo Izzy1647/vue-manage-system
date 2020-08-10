@@ -65,6 +65,11 @@ export default new Router({
           meta: { title: '仓库信息' },
         },
         {
+          path: '/employee',
+          component: () => import('../components/page/employeeTable.vue'),
+          meta: { title: '员工信息' },
+        },
+        {
           path: '/finance',
           component: () =>
             import(

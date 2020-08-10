@@ -230,6 +230,47 @@
             ></el-pagination>
           </div>
         </el-tab-pane>
+
+        <el-tab-pane :label="'饲料配方'" name="fourth">
+          <el-table
+            :data="peifangData"
+            border
+            class="table"
+            ref="multipleTable"
+            header-cell-class-name="table-header"
+            @selection-change="handleSelectionChange"
+          >
+            <el-table-column
+              prop="name"
+              label="饲料种类(1000kg)"
+              align="center"
+            ></el-table-column>
+            <el-table-column label="玉米数量" align="center">
+              <template slot-scope="scope">{{ scope.row.corn  }}kg</template>
+            </el-table-column>
+            <el-table-column label="豆粕数量" align="center">
+              <template slot-scope="scope">{{ scope.row.bean  }}kg</template>
+            </el-table-column>
+            <el-table-column label="麸皮数量" align="center">
+              <template slot-scope="scope">{{ scope.row.bran  }}kg</template>
+            </el-table-column>
+            <el-table-column label="预混料数量" align="center">
+              <template slot-scope="scope">{{ scope.row.premix  }}kg</template>
+            </el-table-column>
+            <el-table-column label="脱霉剂数量" align="center">
+              <template slot-scope="scope">{{ scope.row.offmildew  }}kg</template>
+            </el-table-column>
+          </el-table>
+          <div class="pagination">
+            <el-pagination
+              background
+              layout="total, prev, pager, next"
+              :current-page="query.pageIndex"
+              :page-size="query.pageSize"
+              @current-change="handlePageChange"
+            ></el-pagination>
+          </div>
+        </el-tab-pane>
       </el-tabs>
 
 
@@ -312,6 +353,7 @@ export default {
       siliaoData: [],
       siliaoLogData:[],  // 饲料日志
       multipleSelection: [],
+      peifangData: [],   // 饲料配方信息
       delList: [],
       editVisible: false,
       makeVisible: false,
@@ -388,7 +430,7 @@ export default {
         })
 
       // 饲料日志信息
-      httpGET('/fodderstores')
+      httpGET('/fodderstores?pageSize=30')
         .then((res) => {
           // console.log("fodderstores res:", res)
           this.siliaoLogData = res.data.list
@@ -396,8 +438,18 @@ export default {
         .catch((err) => {
           console.log("stocks  err:", err)
         })
+    },
 
-      
+    getData() {
+      httpGET('/fodderforms')
+        .then((res) => {
+          // console.log("fodderstores res:", res)
+          this.peifangData = res.data.list
+        })
+        .catch((err) => {
+          console.log("stocks  err:", err)
+        })
+
     },
 
     // 时间戳转日期字符串

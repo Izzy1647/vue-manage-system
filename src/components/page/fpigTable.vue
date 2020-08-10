@@ -388,7 +388,7 @@ export default {
     }
   },
   created() {
-    this.getData()
+
   },
 
   mounted() {
@@ -400,7 +400,7 @@ export default {
 
   methods: {
     getTest() {
-      httpGET('/sows')
+      httpGET('/sows?pageSize=100')
         .then((res) => {
           let infos = res.data.list
           console.log("fpigsGET res.data.list:", infos)
@@ -421,15 +421,6 @@ export default {
       let m = (date.getMinutes()+1 < 10 ? '0'+(date.getMinutes()+1) : date.getMinutes()+1) + ':'
       let s = (date.getSeconds()+1 < 10 ? '0'+(date.getSeconds()+1) : date.getSeconds()+1)
       return Y+M+D+h+m+s;
-    },
-
-    // 获取 easy-mock 的模拟数据
-    getData() {
-      fetchData(this.query).then(res => {
-        console.log("getDATA res:",res)
-        // this.tableData = res.list
-        this.pageTotal = res.pageTotal || 50
-      })
     },
 
  
